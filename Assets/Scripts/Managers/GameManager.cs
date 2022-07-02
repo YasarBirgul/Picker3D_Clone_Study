@@ -2,6 +2,8 @@ using System;
 using Extentions;
 using Enums;
 using Keys;
+using Signals;
+
 public class GameManager : MonoSingleton<GameManager>
 {
     #region Self Variables
@@ -19,11 +21,11 @@ public class GameManager : MonoSingleton<GameManager>
     }
     void SubscribeEvents()
     {
-        
+        CoreGameSignals.Instance.onChangeGameState += OnChangeGameStates;
     } 
     void UnSubscribeEvents()
     {
-        
+        CoreGameSignals.Instance.onChangeGameState -= OnChangeGameStates;
     }
     private void OnDisable()
     {
